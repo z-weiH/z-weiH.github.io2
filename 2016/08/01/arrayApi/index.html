@@ -1,0 +1,551 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对一些数组api的一些理解上的记录，方便以后的阅读…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array api详解">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/arrayApi/index.html">
+<meta property="og:site_name" content="Away">
+<meta property="og:description" content="对一些数组api的一些理解上的记录，方便以后的阅读…">
+<meta property="og:updated_time" content="2016-08-01T12:03:08.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array api详解">
+<meta name="twitter:description" content="对一些数组api的一些理解上的记录，方便以后的阅读…">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/01/arrayApi/"/>
+
+  <title> Array api详解 | Away </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Away</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Array api详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T20:03:06+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>对一些数组api的一些理解上的记录，方便以后的阅读…</strong><br><a id="more"></a></p>
+<h3 id="数组转字符串-join-不改变原数组-生成字符串"><a href="#数组转字符串-join-不改变原数组-生成字符串" class="headerlink" title="数组转字符串 - join (不改变原数组,生成字符串)"></a>数组转字符串 - join (不改变原数组,生成字符串)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr.join(参数); </div><div class="line">返回一个以参数分割的字符串</div></pre></td></tr></table></figure>
+<h3 id="数组添加、删除-splice-直接改变原数组"><a href="#数组添加、删除-splice-直接改变原数组" class="headerlink" title="数组添加、删除 - splice (直接改变原数组)"></a>数组添加、删除 - splice (直接改变原数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">arr.splice(index,howmany,item1,.....,itemX)</div><div class="line">index 必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</div><div class="line">howmany 必需。要删除的项目数量。如果设置为 <span class="number">0</span>，则不会删除项目。</div><div class="line">item1.. 可选。向数组添加的新项目。</div><div class="line">说明:</div><div class="line">	<span class="number">1.</span> 直接改变原数组，如果有删除的数据，返回的是以数组形式包裹的数据</div><div class="line">	<span class="number">2.</span> 如果既有添加的数据还有删除的数据，会对原数据先进行删除操作，在进行增加操作，最后返回删除的数据，以及改变后的新数据</div></pre></td></tr></table></figure>
+<h3 id="数组拼接-concat-不改变原数组-生成新数组"><a href="#数组拼接-concat-不改变原数组-生成新数组" class="headerlink" title="数组拼接 - concat (不改变原数组,生成新数组)"></a>数组拼接 - concat (不改变原数组,生成新数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">arr.concat(arr1,arr2,arrx,...);</div><div class="line">arrx 可选。该参数可以是具体的值，也可以是数组对象。可以是任意多个。</div><div class="line">返回拼接后的新数组，不会直接改变原数组。</div><div class="line">说明:</div><div class="line">	当没有参数时，也返回原数组，但是和原数组没有任何关系，可以用来复制数组。</div></pre></td></tr></table></figure>
+<h3 id="数组排序-sort-直接改变原数组"><a href="#数组排序-sort-直接改变原数组" class="headerlink" title="数组排序 - sort (直接改变原数组)"></a>数组排序 - sort (直接改变原数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">arr.sort(function(a,b)&#123;&#125;);</div><div class="line"></div><div class="line">参数为回调函数，可选 不传默认以数组中每个元素的unicode编码由小到大排序</div><div class="line">a-表示当前比对的元素 （从数组的第一个元素开始）</div><div class="line">b-表示当前比对的下一个元素 （从数组的第二个元素开始）</div><div class="line"></div><div class="line">回调函数 : sort会根据回调中的返回值进行排序</div><div class="line">   - 返回 &gt; <span class="number">0</span> 的数 数组元素a排在b之后</div><div class="line">   - 返回 &lt; <span class="number">0</span> 的数 数组元素a排在b之前</div><div class="line">   - 返回 = <span class="number">0</span> 的数 数组元素a b 保持原位</div></pre></td></tr></table></figure>
+<h3 id="数组-栈操作-直接改变原数组"><a href="#数组-栈操作-直接改变原数组" class="headerlink" title="数组 - 栈操作 (直接改变原数组)"></a>数组 - 栈操作 (直接改变原数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr.push(item,itemx); //向数组最后添加若干个元素 返回改变后数组的长度 </div><div class="line">arr.pop(); //删除数组后最后一个元素 返回删除的元素</div><div class="line">arr.unshift(item,itemx); //向数组开头添加若干个元素 返回改变后数组的长度</div><div class="line">arr.shift(); //删除数组第一个元素 返回删除的元素</div></pre></td></tr></table></figure>
+<h3 id="数组颠倒-reverse-直接改变原数组"><a href="#数组颠倒-reverse-直接改变原数组" class="headerlink" title="数组颠倒 - reverse (直接改变原数组)"></a>数组颠倒 - reverse (直接改变原数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr.reverse(); // 数组颠倒、顺序调换</div></pre></td></tr></table></figure>
+<h3 id="数组元素查找-indexOf-不改变原数组-返回找到元素的下标，没有返回-1"><a href="#数组元素查找-indexOf-不改变原数组-返回找到元素的下标，没有返回-1" class="headerlink" title="数组元素查找 - indexOf (不改变原数组,返回找到元素的下标，没有返回-1)"></a>数组元素查找 - indexOf (不改变原数组,返回找到元素的下标，没有返回-1)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr.indexOf(searchvalue,fromindex)</div><div class="line">	- searchvalue 必需。规定需检索的字符串值。</div><div class="line">	- fromindex 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 <span class="number">0</span> 到 stringObject.length - <span class="number">1</span>。如省略该参数，则将从字符串的首字符开始检索。</div><div class="line">返回 如果找到检索的字符串返回对应的下边 ， 否则返回<span class="number">-1</span></div></pre></td></tr></table></figure>
+<h3 id="数组循环-forEach-不改变原数组"><a href="#数组循环-forEach-不改变原数组" class="headerlink" title="数组循环 - forEach (不改变原数组)"></a>数组循环 - forEach (不改变原数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">arr.forEach(callback);</div><div class="line">	- 接收一个回调函数 callback</div><div class="line">	- function(val,key)&#123;</div><div class="line">		key - 当前下标</div><div class="line">		val - 对应下标的元素	 </div><div class="line">	  &#125;</div></pre></td></tr></table></figure>
+<h3 id="数组筛选-filter-不改变原数组-返回筛选后的新数组"><a href="#数组筛选-filter-不改变原数组-返回筛选后的新数组" class="headerlink" title="数组筛选 - filter (不改变原数组,返回筛选后的新数组)"></a>数组筛选 - filter (不改变原数组,返回筛选后的新数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">arr.filter(callback);</div><div class="line">	- 接收一个回调函数 callback</div><div class="line">	- function(val,key)&#123;</div><div class="line">		// 判断逻辑</div><div class="line">		<span class="keyword">return</span> true || false ( <span class="keyword">return</span> true 表示当前元素添加到新数组当中 ， false 表示跳过当前元素 )</div><div class="line">	&#125;</div><div class="line">	- 最后返回筛选后的新数组，没有符合条件的返回空数组</div><div class="line">	- demo</div><div class="line">		var arr = [&#123;</div><div class="line">		  name : <span class="string">"zs"</span>,</div><div class="line">		  city : <span class="string">"xy"</span></div><div class="line">		&#125;,&#123;</div><div class="line">		  name : <span class="string">"ls"</span>,</div><div class="line">		  city : <span class="string">"xy"</span></div><div class="line">		&#125;,&#123;</div><div class="line">		  name : <span class="string">"zs"</span>,</div><div class="line">		  city : <span class="string">"hz"</span></div><div class="line">		&#125;];</div><div class="line">		var newArr = arr.filter(function(val,key)&#123;</div><div class="line">		  <span class="keyword">return</span> val.name === <span class="string">"zs"</span></div><div class="line">		&#125;);</div><div class="line">		newArr = [&#123;name : <span class="string">"zs"</span>,city : <span class="string">"xy"</span>&#125;,&#123;name : <span class="string">"zs"</span>,city : <span class="string">"hz"</span>&#125;];</div></pre></td></tr></table></figure>
+<h3 id="数组映射-map-不改变原数组-返回改变后的新数组"><a href="#数组映射-map-不改变原数组-返回改变后的新数组" class="headerlink" title="数组映射 - map (不改变原数组,返回改变后的新数组)"></a>数组映射 - map (不改变原数组,返回改变后的新数组)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">arr.map(callback);</div><div class="line">	- 回调函数</div><div class="line">	- function(val,key)&#123;</div><div class="line">		// val - 当前 数组元素</div><div class="line">		// key - 当前下标</div><div class="line">		// 通过原数组 加一些逻辑 （新增 || 删除 || 修改）最后修改后的数据 <span class="keyword">return</span> 出去 最后 map返回 操作后的数组集合 </div><div class="line">	&#125;</div><div class="line">	- demo </div><div class="line">		var arr = [</div><div class="line">		&#123;</div><div class="line">			first_name:<span class="string">"Colin"</span>,</div><div class="line">			last_name:<span class="string">"Toh"</span></div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			first_name:<span class="string">"Addy"</span>,</div><div class="line">			last_name:<span class="string">"Osmani"</span></div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			first_name:<span class="string">"Yehuda"</span>,</div><div class="line">			last_name:<span class="string">"Katz"</span></div><div class="line">		&#125;</div><div class="line">		];</div><div class="line">		var newArr = arr.map(function(item,index)&#123;</div><div class="line">		    item.full_name = <span class="string">"addName-"</span> + item.first_name</div><div class="line">		    <span class="keyword">return</span> item;</div><div class="line">	  	&#125;);</div><div class="line">		newArr = [</div><div class="line">		&#123;</div><div class="line">			first_name: <span class="string">"Colin"</span>,</div><div class="line">			full_name: <span class="string">"addName-Colin"</span>,</div><div class="line">			last_name: <span class="string">"Toh"</span></div><div class="line">		&#125;,</div><div class="line">		&#123;</div><div class="line">			first_name: <span class="string">"Addy"</span>,</div><div class="line">			full_name: <span class="string">"addName-Addy"</span>,</div><div class="line">			last_name: <span class="string">"Osmani"</span></div><div class="line">    		&#125;,</div><div class="line">		&#123;</div><div class="line">			first_name: <span class="string">"Yehuda"</span>,</div><div class="line">			full_name: <span class="string">"addNameYehuda"</span>,</div><div class="line">			last_name: <span class="string">"Katz"</span></div><div class="line">		&#125;</div><div class="line">		];</div></pre></td></tr></table></figure>
+<h3 id="数组累加器-reduce-不改变原数组-返回累计后的元素"><a href="#数组累加器-reduce-不改变原数组-返回累计后的元素" class="headerlink" title="数组累加器 - reduce (不改变原数组,返回累计后的元素)"></a>数组累加器 - reduce (不改变原数组,返回累计后的元素)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">arr.reduce(callback[,initFirstData]);</div><div class="line">   	- callback : function(current,next,index,arr)&#123;&#125;</div><div class="line">	    	current (数组中第一个元素 || initFirstData参数)</div><div class="line">	    	next (下一个数组元素)</div><div class="line">	    	index (当前下标)</div><div class="line">	    	arr (总数组)</div><div class="line">   	- callback 接受一个返回值作为 下一次调用的回调函数中 current参数传入</div><div class="line">   	- 最后返回累计后的元素</div><div class="line">// 主要作用 数组求和,数组求乘</div></pre></td></tr></table></figure>
+<h3 id="数组中的-some-和-amp-amp-every"><a href="#数组中的-some-和-amp-amp-every" class="headerlink" title="数组中的 || (some) 和 &amp;&amp; (every)"></a>数组中的 || (some) 和 &amp;&amp; (every)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- some</div><div class="line">	arr.some(callback);</div><div class="line">	callback ： function(val,key,arr)&#123;</div><div class="line">		val : 当前元素</div><div class="line">		key : 下标</div><div class="line">		arr : arr数组</div><div class="line">		// 处理逻辑</div><div class="line">		<span class="keyword">return</span> true || false </div><div class="line">	&#125;</div><div class="line">	callback接受一个返回值 如果返回 true 则直接停止，some()直接返回 true，</div><div class="line"></div><div class="line">	否则继续调用callback直到返回true，就停止调用，some()返回 true</div><div class="line"></div><div class="line">	如果一直返回 false 最后 some() 返回 false</div><div class="line">- every</div><div class="line">	arr.every(callback);</div><div class="line">	callback ： function(val,key,arr)&#123;</div><div class="line">		val : 当前元素</div><div class="line">		key : 下标</div><div class="line">		arr : arr数组</div><div class="line">	&#125;</div><div class="line">	callback接受一个返回值 如果返回 false 则直接停止，every()直接返回 false，</div><div class="line"></div><div class="line">	否则继续调用callback直到返回false，就停止调用，every()返回 false </div><div class="line"></div><div class="line">	如果一直返回 true 最后 every() 返回 true</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/19/Hexo搭建博客/" rel="next" title="hexo博客的搭建">
+                <i class="fa fa-chevron-left"></i> hexo博客的搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qyc.jpg"
+               alt="Away" />
+          <p class="site-author-name" itemprop="name">Away</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组转字符串-join-不改变原数组-生成字符串"><span class="nav-number">1.</span> <span class="nav-text">数组转字符串 - join (不改变原数组,生成字符串)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组添加、删除-splice-直接改变原数组"><span class="nav-number">2.</span> <span class="nav-text">数组添加、删除 - splice (直接改变原数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组拼接-concat-不改变原数组-生成新数组"><span class="nav-number">3.</span> <span class="nav-text">数组拼接 - concat (不改变原数组,生成新数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组排序-sort-直接改变原数组"><span class="nav-number">4.</span> <span class="nav-text">数组排序 - sort (直接改变原数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组-栈操作-直接改变原数组"><span class="nav-number">5.</span> <span class="nav-text">数组 - 栈操作 (直接改变原数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组颠倒-reverse-直接改变原数组"><span class="nav-number">6.</span> <span class="nav-text">数组颠倒 - reverse (直接改变原数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组元素查找-indexOf-不改变原数组-返回找到元素的下标，没有返回-1"><span class="nav-number">7.</span> <span class="nav-text">数组元素查找 - indexOf (不改变原数组,返回找到元素的下标，没有返回-1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组循环-forEach-不改变原数组"><span class="nav-number">8.</span> <span class="nav-text">数组循环 - forEach (不改变原数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组筛选-filter-不改变原数组-返回筛选后的新数组"><span class="nav-number">9.</span> <span class="nav-text">数组筛选 - filter (不改变原数组,返回筛选后的新数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组映射-map-不改变原数组-返回改变后的新数组"><span class="nav-number">10.</span> <span class="nav-text">数组映射 - map (不改变原数组,返回改变后的新数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组累加器-reduce-不改变原数组-返回累计后的元素"><span class="nav-number">11.</span> <span class="nav-text">数组累加器 - reduce (不改变原数组,返回累计后的元素)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组中的-some-和-amp-amp-every"><span class="nav-number">12.</span> <span class="nav-text">数组中的 || (some) 和 && (every)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Away</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
