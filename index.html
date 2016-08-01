@@ -364,50 +364,12 @@
 
       
         
-          
-            <h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境的安装"><a href="#环境的安装" class="headerlink" title="环境的安装"></a>环境的安装</h2><p><strong>安装</strong> <a href="https://nodejs.org/en/" target="_blank" rel="external">node</a></p>
-<p>选择一个版本下载，下载完一路确定安装即可， <strong>自带npm</strong> 。</p>
-<p><strong>安装</strong> <a href="https://git-scm.com/" target="_blank" rel="external">git</a></p>
-<p>下载一路安装即可。</p>
-<h2 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h2><p><strong>新建文件夹</strong></p>
-<p>在桌面或某个磁盘新建一个空文件夹，存放hexo，后续操作都在这个文件夹操作</p>
-<p><strong>打开 Git Bash</strong> </p>
-<p>在新建的文件夹内右键鼠标 打开 Git Bash</p>
-<p><code>npm install hexo-cli -g //输入完回车即可，用于全局安装hexo</code></p>
-<p><strong>hexo的安装</strong></p>
-<p><code>hexo init //初始化hexo，这个过程会下一些文件到目录下，下载完成即可。</code></p>
-<p><strong>安装hexo依赖</strong></p>
-<p><code>npm install</code></p>
-<p><strong>安装过程中报错</strong></p>
-<p>如果安装过程中有类似<code>ERROR Deployer not found : github</code>的错误。</p>
-<p>输入命令<code>npm install hexo-deployer-git --save</code>即可。</p>
-<p><strong>hexo命令</strong></p>
-<p><code>hexo g 初始化hexo修改的内容</code></p>
-<p><code>hexo s 访问到本地的hexo博客(到这一步可以看到自己搭的博客了-.-)</code></p>
-<p>在浏览器上输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 可以看到自己本地的博客</p>
-<p><code>hexo d 提交到github上输完命令后一般会输入用户名密码，正确后会提交到github上</code></p>
-<p><strong>推送到github</strong></p>
-<ol>
-<li>注册github填写邮箱和密码，注册有邮箱会收到验证信息，确定即可</li>
-<li><p>新建New repository<br><img src="http://i.imgur.com/zjLbRWI.png" alt=""></p>
-</li>
-<li><p>Repository name 为 : 创建github的名称 + .github.io 比如 ： z-weiH.github.io </p>
-</li>
-<li>创建完毕后 本地的代码 hexo d 提交到 gitbug 上 ， 页面直接访问 刚才创建的文件名即可 <a href="z-weiH.github.io">在线博客</a></li>
-</ol>
-<h1 id="next主题说明"><a href="#next主题说明" class="headerlink" title="next主题说明"></a>next主题说明</h1><h2 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Hexo Configuration</span></div><div class="line"><span class="comment">## Docs: http://hexo.io/docs/configuration.html</span></div><div class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></div><div class="line"></div><div class="line"><span class="comment"># Site	这下面的几项配置都很简单，你看我的博客就知道分别是什么意思</span></div><div class="line">title: Away	<span class="comment">#博客名</span></div><div class="line"><span class="comment">#subtitle: 	#副标题</span></div><div class="line"><span class="comment">#description:  #用于搜索，没有直观表现</span></div><div class="line">author: Away	<span class="comment">#作者</span></div><div class="line">language: zh-CN	<span class="comment">#语言</span></div><div class="line">timezone: 	<span class="comment">#时区，此处不填写，hexo会以你目前电脑的时区为默认值</span></div><div class="line"></div><div class="line"><span class="comment"># URL	暂不配置，使用默认值</span></div><div class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></div><div class="line">url: http://yoursite.com  <span class="comment">#域名</span></div><div class="line">root: /</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line"><span class="comment"># Directory		暂不配置，使用默认值</span></div><div class="line">source_dir: source</div><div class="line">public_dir: public</div><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div><div class="line">i18n_dir: :lang</div><div class="line">skip_render:</div><div class="line"></div><div class="line"><span class="comment"># Writing	文章布局等，使用默认值</span></div><div class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></div><div class="line">default_layout: post</div><div class="line">titlecase: false <span class="comment"># Transform title into titlecase</span></div><div class="line">external_link: true <span class="comment"># Open external links in new tab</span></div><div class="line">filename_case: <span class="number">0</span></div><div class="line">render_drafts: false</div><div class="line">post_asset_folder: false</div><div class="line">relative_link: false</div><div class="line">future: true</div><div class="line">highlight:</div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"><span class="comment"># Category &amp; Tag	暂不配置，使用默认值</span></div><div class="line">default_category: uncategorized</div><div class="line">category_map:</div><div class="line">tag_map:</div><div class="line"></div><div class="line"><span class="comment"># Date / Time format	时间格式，使用默认值</span></div><div class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></div><div class="line"><span class="comment">## You can customize the date format as defined in</span></div><div class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></div><div class="line">date_format: YYYY-MM-DD</div><div class="line">time_format: HH:mm:ss</div><div class="line"></div><div class="line"><span class="comment"># Pagination	</span></div><div class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></div><div class="line">per_page: <span class="number">10</span>	<span class="comment">#每页显示的文章数，0表示不分页</span></div><div class="line">pagination_dir: page</div><div class="line"></div><div class="line"><span class="comment"># Extensions	插件配置，暂时不配置</span></div><div class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></div><div class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></div><div class="line"><span class="comment">## 下面是主题的名称</span></div><div class="line">theme: next	<span class="comment">#使用的主题，即：\themes文件夹下的主题文件夹名</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Deployment	用于部署到github，之前已经配置过</span></div><div class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"></div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  // 配置 github hexo上的地址</div><div class="line">  repository: https://github.com/z-weiH/z-weiH.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<h2 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h2><ol>
-<li>下载主题到/themes文件夹下</li>
-<li>站点配置文件中theme : <strong>这里改为下载主题的名称</strong></li>
-<li>主题的配置项在/thems/主题名/_config.yml下根据主题配置文档，进行相关配置</li>
-</ol>
-<h2 id="其他-关于博客文章的删除"><a href="#其他-关于博客文章的删除" class="headerlink" title="其他-关于博客文章的删除"></a>其他-关于博客文章的删除</h2><ol>
-<li>再把hexo文件根目录找到<strong>db.json</strong>把他干了</li>
-<li>执行 hexo clear</li>
-<li>hexo d 推送到github上可以看到相关文章已经删除</li>
-</ol>
-
-          
+          <p><strong>hexo博客的搭建流程…</strong></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/19/Hexo搭建博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

@@ -84,41 +84,17 @@
 
 
 
-<meta name="description" content="Hexo搭建博客环境的安装安装 node
-选择一个版本下载，下载完一路确定安装即可， 自带npm 。
-安装 git
-下载一路安装即可。
-hexo的安装新建文件夹
-在桌面或某个磁盘新建一个空文件夹，存放hexo，后续操作都在这个文件夹操作
-打开 Git Bash 
-在新建的文件夹内右键鼠标 打开 Git Bash
-npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
+<meta name="description" content="hexo博客的搭建流程…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客的搭建">
 <meta property="og:url" content="http://yoursite.com/2016/07/19/Hexo搭建博客/index.html">
 <meta property="og:site_name" content="Away">
-<meta property="og:description" content="Hexo搭建博客环境的安装安装 node
-选择一个版本下载，下载完一路确定安装即可， 自带npm 。
-安装 git
-下载一路安装即可。
-hexo的安装新建文件夹
-在桌面或某个磁盘新建一个空文件夹，存放hexo，后续操作都在这个文件夹操作
-打开 Git Bash 
-在新建的文件夹内右键鼠标 打开 Git Bash
-npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
+<meta property="og:description" content="hexo博客的搭建流程…">
 <meta property="og:image" content="http://i.imgur.com/zjLbRWI.png">
-<meta property="og:updated_time" content="2016-07-28T15:09:19.623Z">
+<meta property="og:updated_time" content="2016-08-01T12:11:16.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客的搭建">
-<meta name="twitter:description" content="Hexo搭建博客环境的安装安装 node
-选择一个版本下载，下载完一路确定安装即可， 自带npm 。
-安装 git
-下载一路安装即可。
-hexo的安装新建文件夹
-在桌面或某个磁盘新建一个空文件夹，存放hexo，后续操作都在这个文件夹操作
-打开 Git Bash 
-在新建的文件夹内右键鼠标 打开 Git Bash
-npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
+<meta name="twitter:description" content="hexo博客的搭建流程…">
 <meta name="twitter:image" content="http://i.imgur.com/zjLbRWI.png">
 
 
@@ -292,7 +268,9 @@ npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
       
 
       
-        <h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境的安装"><a href="#环境的安装" class="headerlink" title="环境的安装"></a>环境的安装</h2><p><strong>安装</strong> <a href="https://nodejs.org/en/" target="_blank" rel="external">node</a></p>
+        <p><strong>hexo博客的搭建流程…</strong></p>
+<a id="more"></a>
+<h1 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h1><h2 id="环境的安装"><a href="#环境的安装" class="headerlink" title="环境的安装"></a>环境的安装</h2><p><strong>安装</strong> <a href="https://nodejs.org/en/" target="_blank" rel="external">node</a></p>
 <p>选择一个版本下载，下载完一路确定安装即可， <strong>自带npm</strong> 。</p>
 <p><strong>安装</strong> <a href="https://git-scm.com/" target="_blank" rel="external">git</a></p>
 <p>下载一路安装即可。</p>
@@ -328,10 +306,18 @@ npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
 <li>站点配置文件中theme : <strong>这里改为下载主题的名称</strong></li>
 <li>主题的配置项在/thems/主题名/_config.yml下根据主题配置文档，进行相关配置</li>
 </ol>
-<h2 id="其他-关于博客文章的删除"><a href="#其他-关于博客文章的删除" class="headerlink" title="其他-关于博客文章的删除"></a>其他-关于博客文章的删除</h2><ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>关于博客文章的删除</strong></p>
+<ol>
 <li>再把hexo文件根目录找到<strong>db.json</strong>把他干了</li>
 <li>执行 hexo clear</li>
 <li>hexo d 推送到github上可以看到相关文章已经删除</li>
+</ol>
+<p><strong>关于阅读全文分割</strong></p>
+<ol>
+<li>使用Hexo时，在使用markdown语法编辑文件时可以在index.html页面上显示摘要和阅读全文按钮。</li>
+<li>在合适的位置插入下列内容作为分隔符</li>
+<li><!--more--></li>
+<li>标签以前的内容将会在索引页上显示为摘要。</li>
 </ol>
 
       
@@ -464,7 +450,7 @@ npm install hexo-cli -g //输入完回车即可，用于全局安装hex">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境的安装"><span class="nav-number">1.1.</span> <span class="nav-text">环境的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo的安装"><span class="nav-number">1.2.</span> <span class="nav-text">hexo的安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#next主题说明"><span class="nav-number">2.</span> <span class="nav-text">next主题说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#站点配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">站点配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">主题配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-关于博客文章的删除"><span class="nav-number">2.3.</span> <span class="nav-text">其他-关于博客文章的删除</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境的安装"><span class="nav-number">1.1.</span> <span class="nav-text">环境的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo的安装"><span class="nav-number">1.2.</span> <span class="nav-text">hexo的安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#next主题说明"><span class="nav-number">2.</span> <span class="nav-text">next主题说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#站点配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">站点配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">主题配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.3.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
